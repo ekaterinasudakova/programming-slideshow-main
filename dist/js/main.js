@@ -1,2 +1,2 @@
-let slides=document.querySelectorAll(".slideshow img");console.log(slides),slides[0].classList.add("show");let slideIndex=0;setInterval((function(){slides[slideIndex].classList.remove("show"),slideIndex++,slideIndex===slides.length&&(slideIndex=0),slides[slideIndex].classList.add("show")}),3e3);
+let makeSlideshow=function(e,s=3e3){let l=document.querySelectorAll(e+" img");console.log(l),l[0].classList.add("show");let o=0;setInterval((function(){l[o].classList.remove("show"),o++,o===l.length&&(o=0),l[o].classList.add("show")}),s)};makeSlideshow(".sunset"),makeSlideshow(".other",5e3);
 //# sourceMappingURL=main.js.map

@@ -38,22 +38,27 @@ every three seconds = setInterval
     X remove() append()
 */
 
-//query to find all images = querySelectorAll
-let slides = document.querySelectorAll('.slideshow img')
-console.log(slides)
-//show 0th image = element.classList.add
-slides[0].classList.add('show')
-//make variable to track current image number = let
-let slideIndex = 0
-//every three seconds = setInterval
-setInterval(function() {
-    //    hide previous image = element.classList.remove
-    slides[slideIndex].classList.remove('show')
-    //    change current image number variable (usually old image + 1, sometimes loop back to 0)
-    slideIndex++
-    if (slideIndex === slides.length){
-        slideIndex = 0
-    }
-    //    show next image = element.classList.add
-    slides[slideIndex].classList.add('show')
-}, 3000)
+let makeSlideshow = function (slideshowParentSelector, intervalTime = 3000){
+    //query to find all images = querySelectorAll
+    let slides = document.querySelectorAll(slideshowParentSelector + ' img')
+    console.log(slides)
+    //show 0th image = element.classList.add
+    slides[0].classList.add('show')
+    //make variable to track current image number = let
+    let slideIndex = 0
+    //every three seconds = setInterval
+    setInterval(function() {
+        //    hide previous image = element.classList.remove
+        slides[slideIndex].classList.remove('show')
+        //    change current image number variable (usually old image + 1, sometimes loop back to 0)
+        slideIndex++
+        if (slideIndex === slides.length){
+            slideIndex = 0
+        }
+        //    show next image = element.classList.add
+        slides[slideIndex].classList.add('show')
+    }, intervalTime)
+}
+makeSlideshow('.sunset')
+makeSlideshow('.other', 5000)
+

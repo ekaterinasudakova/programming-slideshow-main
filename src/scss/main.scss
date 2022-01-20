@@ -29,11 +29,12 @@ body {
 /* 2. Content ================================= */
 
 .slideshow {
+	width: 100%;
 	img{
-		width: 200px;
-		opacity: 0.5;
+		width: 100%;
+		display: none;
 	}
 	img.show{
-		opacity: 1;
+		display: block;
 	}
 }

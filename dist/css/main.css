@@ -77,11 +77,14 @@ body {
 }
 
 /* 2. Content ================================= */
+.slideshow {
+  width: 100%;
+}
 .slideshow img {
-  width: 200px;
-  opacity: 0.5;
+  width: 100%;
+  display: none;
 }
 .slideshow img.show {
-  opacity: 1;
+  display: block;
 }
 /*# sourceMappingURL=main.css.map */
