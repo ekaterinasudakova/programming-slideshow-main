@@ -38,7 +38,7 @@ every three seconds = setInterval
     X remove() append()
 */
 
-let makeSlideshow = function (slideshowParentSelector, intervalTime = 3000){
+let makeSlideshow = function (slideshowParentSelector){
     //query to find all images = querySelectorAll
     let slides = document.querySelectorAll(slideshowParentSelector + ' img')
     console.log(slides)
@@ -46,8 +46,23 @@ let makeSlideshow = function (slideshowParentSelector, intervalTime = 3000){
     slides[0].classList.add('show')
     //make variable to track current image number = let
     let slideIndex = 0
-    //every three seconds = setInterval
-    setInterval(function() {
+
+
+    //if the variable selects the appropriate button for the slideshow,
+    //why does it adjust the images in the wrong slideshow?
+    let nextButton = document.querySelector('.next')
+    console.log(nextButton)
+    let prevButton = document.querySelector('.back')
+    console.log(prevButton)
+
+    nextButton.onclick = function(){
+        nextSlide()
+    }
+    prevButton.onclick = function(){
+        previousSlide()
+    }
+
+    let nextSlide = function() {
         //    hide previous image = element.classList.remove
         slides[slideIndex].classList.remove('show')
         //    change current image number variable (usually old image + 1, sometimes loop back to 0)
@@ -57,8 +72,37 @@ let makeSlideshow = function (slideshowParentSelector, intervalTime = 3000){
         }
         //    show next image = element.classList.add
         slides[slideIndex].classList.add('show')
-    }, intervalTime)
+    }
+
+    let previousSlide = function(){
+        slides[slideIndex].classList.remove('show')
+        slideIndex--
+        if (slideIndex == 0){
+            slideIndex == slides.length
+        }
+        //not sure why this breaks instead of looping. It should make slideIndex = 3
+        //and add the show class to the last image.
+        slides[slideIndex].classList.add('show')
+    }
+    
+
+ 
+
+    
+
+    //every three seconds = setInterval
+    // setInterval(function() {
+    //     //    hide previous image = element.classList.remove
+    //     slides[slideIndex].classList.remove('show')
+    //     //    change current image number variable (usually old image + 1, sometimes loop back to 0)
+    //     slideIndex++
+    //     if (slideIndex === slides.length){
+    //         slideIndex = 0
+    //     }
+    //     //    show next image = element.classList.add
+    //     slides[slideIndex].classList.add('show')
+    // }, intervalTime)
 }
 makeSlideshow('.sunset')
-makeSlideshow('.other', 5000)
+makeSlideshow('.other')
 

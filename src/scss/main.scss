@@ -29,12 +29,38 @@ body {
 /* 2. Content ================================= */
 
 .slideshow {
-	width: 100%;
+	position:relative;
+	width: 50%;
+	height: 300px;
+	margin: 1em auto;
 	img{
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
-		display: none;
+		opacity: .1;
+		z-index: -1;
+		-webkit-transition: opacity 3s ease-in;
+  		-moz-transition: opacity 3s ease-in;
+  		-o-transition: opacity 3s ease-in;
+  		transition: opacity 3s ease-in;
+		
 	}
 	img.show{
 		display: block;
+		z-index: 1;
+		opacity: 1;	
+		-webkit-transition: opacity 2s ease-out;
+  		-moz-transition: opacity 2s ease-out;
+  		-o-transition: opacity 2s ease-out;
+  		transition: opacity 2s ease-out;
+	}
+}
+.button-container{
+	display: flex;
+	justify-content: center;
+	button{
+		margin: 1em;
+		padding: .5em 1em;
 	}
 }
