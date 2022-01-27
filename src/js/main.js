@@ -40,14 +40,29 @@ every three seconds = setInterval
 
 
 let makeSlideshow = function (slideshowParentSelector){
+    let slideshowDiv = document.querySelector(slideshowParentSelector)
+    console.log(slideshowDiv)
     //query to find all images = querySelectorAll
-    let slides = document.querySelectorAll(slideshowParentSelector + ' img')
+    let slides = slideshowDiv.querySelectorAll('img')
     console.log(slides)
     //show 0th image = element.classList.add
     slides[0].classList.add('show')
     //make variable to track current image number = let
     let slideIndex = 0
 
+
+
+    let previousSlide = function(){
+        //    hide previous image = element.classList.remove
+        slides[slideIndex].classList.remove('show')
+        // change current image number variable (usually old image -1, sometimes loop back to 3)
+        slideIndex--
+        if (slideIndex === -1){
+            slideIndex = slides.length - 1
+        }
+        // show next image
+        slides[slideIndex].classList.add('show')
+    }
 
 
     let nextSlide = function() {
@@ -62,19 +77,6 @@ let makeSlideshow = function (slideshowParentSelector){
         slides[slideIndex].classList.add('show')
     }
 
-
-
-    let previousSlide = function(){
-        //    hide previous image = element.classList.remove
-        slides[slideIndex].classList.remove('show')
-        // change current image number variable (usually old image -1, sometimes loop back to 3)
-        slideIndex--
-        if (slideIndex = 0){
-            slideIndex === slides.length - 1
-        }
-        // show next image
-        slides[slideIndex].classList.add('show')
-    }
 
 
     //BUTTONS
@@ -112,32 +114,24 @@ let makeSlideshow = function (slideshowParentSelector){
 
     //TOUCH
 
-    
-    let touchMovement = function(){
-         //listen to touch movement
-        window.addEventListener('touchstart', function(event){
-            //create variable to store initial touch position X axis
-            let startingX = event.touches[0].clientX
-            console.log(startingX)
-        })
-        window.addEventListener('touchmove', function(event){
-            //create variable to store final touch position X axis
-            let movingX = event.touches[0].clientX
-            console.log(movingX)
-        })
-        //calculate if moved right or left
-        window.addEventListener('touchend', function(){
-            if (startingX + 100 < movingX){
-                console.log('right')
-            } else if (startingX - 100 > movingX){
-                console.log('left')
-            }
-        })
-
-    }
-    
-    touchMovement();   
-
+    let touchPoint;
+    slideshowDiv.addEventListener('touchstart', function(event){
+        console.log(event.touches[0].pageX)
+        touchPoint = event.touches[0].pageX
+    })
+    slideshowDiv.addEventListener('touchend', function(event){
+        console.log(event)
+        let endTouchPoint = event.changedTouches[0].pageX
+        if(touchPoint < endTouchPoint){
+            //moved right
+            console.log('right')
+            nextSlide()
+        } else {
+            //moved left
+            console.log('left')
+            previousSlide()
+        }
+    })
     
 
     //every three seconds = setInterval
