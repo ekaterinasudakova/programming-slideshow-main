@@ -70,27 +70,30 @@ let makeSlideshow = function (slideshowParentSelector){
     })
 
 
-    var startingX, movingX;
-    //listen to touch movement
-    window.addEventListener('touchstart', function(event){
-        //create variable to store initial touch position X axis
-        let startingX = event.touches[0].clientX
-        console.log(startingX)
-    })
-    window.addEventListener('touchmove', function(event){
-        //create variable to store final touch position X axis
-        let movingX = event.touches[0].clientX
-        console.log(movingX)
-    })
-    //calculate if moved right or left
-    window.addEventListener('touchend', function(){
-        if (startingX + 100 < movingX){
-            console.log('right')
-        } else if (startingX - 100 > movingX){
-            console.log('left')
-        }
-    })
+    let touchMovement = function(){
+         //listen to touch movement
+        window.addEventListener('touchstart', function(event){
+            //create variable to store initial touch position X axis
+            let startingX = event.touches[0].clientX
+            console.log(startingX)
+        })
+        window.addEventListener('touchmove', function(event){
+            //create variable to store final touch position X axis
+            let movingX = event.touches[0].clientX
+            console.log(movingX)
+        })
+        //calculate if moved right or left
+        window.addEventListener('touchend', function(){
+            if (startingX + 100 < movingX){
+                console.log('right')
+            } else if (startingX - 100 > movingX){
+                console.log('left')
+            }
+        })
+
+    }
     
+    touchMovement();   
 
     //when button is pressed, run function
     nextButton.onclick = function(){

@@ -47,8 +47,8 @@ body {
 
 .slideshow {
 	position:relative;
-	width: 50%;
-	height: 300px;
+	width: 100%;
+	height: 15em;
 	margin: 1em auto;
 	img{
 		position: absolute;
@@ -73,13 +73,13 @@ body {
   		transition: opacity 2s ease-out;
 	}
 
-	@include breakpoint(mobile){
-		width: 100%;
-		height: 15em;
+	@include breakpoint(laptop){
+		width: 50%;
+		height: 300px;
 	}
 }
 .button-container{
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
@@ -88,7 +88,7 @@ body {
 		padding: .5em 1em;
 	}
 
-	@include breakpoint(mobile){
-		display: none;
+	@include breakpoint(laptop){
+		display: flex;
 	}
 }

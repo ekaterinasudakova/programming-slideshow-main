@@ -80,8 +80,8 @@ body {
 /* 2. Content ================================= */
 .slideshow {
   position: relative;
-  width: 50%;
-  height: 300px;
+  width: 100%;
+  height: 15em;
   margin: 1em auto;
 }
 .slideshow img {
@@ -99,16 +99,15 @@ body {
   opacity: 1;
   transition: opacity 2s ease-out;
 }
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 768px) {
   .slideshow {
-    width: 100%;
-    height: 15em;
+    width: 50%;
+    height: 300px;
   }
 }
 
 .button-container {
-  display: -webkit-flex;
-  display: flex;
+  display: none;
   -webkit-justify-content: center;
           justify-content: center;
   -webkit-align-items: center;
@@ -119,9 +118,10 @@ body {
   margin: 0 20em;
   padding: 0.5em 1em;
 }
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 768px) {
   .button-container {
-    display: none;
+    display: -webkit-flex;
+    display: flex;
   }
 }
 /*# sourceMappingURL=main.css.map */
