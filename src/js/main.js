@@ -48,11 +48,9 @@ let makeSlideshow = function (slideshowParentSelector){
     let slideIndex = 0
 
 
-    //if the variable selects the appropriate button for the slideshow,
-    //why does it adjust the images in the wrong slideshow?
-    let nextButton = document.querySelector('.next')
+    let nextButton = document.querySelector(slideshowParentSelector + ' .next')
     console.log(nextButton)
-    let prevButton = document.querySelector('.back')
+    let prevButton = document.querySelector(slideshowParentSelector + ' .back')
     console.log(prevButton)
 
     nextButton.onclick = function(){
@@ -75,19 +73,16 @@ let makeSlideshow = function (slideshowParentSelector){
     }
 
     let previousSlide = function(){
+        //    hide previous image = element.classList.remove
         slides[slideIndex].classList.remove('show')
+        // change current image number variable (usually old image -1, sometimes loop back to 3)
         slideIndex--
-        if (slideIndex == 0){
-            slideIndex == slides.length
+        if (slideIndex = 0){
+            slideIndex === slides.length - 1
         }
-        //not sure why this breaks instead of looping. It should make slideIndex = 3
-        //and add the show class to the last image.
+        // show next image
         slides[slideIndex].classList.add('show')
     }
-    
-
- 
-
     
 
     //every three seconds = setInterval

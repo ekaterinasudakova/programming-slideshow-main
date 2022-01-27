@@ -104,9 +104,12 @@ body {
   display: flex;
   -webkit-justify-content: center;
           justify-content: center;
+  -webkit-align-items: center;
+          align-items: center;
+  height: 100%;
 }
 .button-container button {
-  margin: 1em;
+  margin: 0 20em;
   padding: 0.5em 1em;
 }
 /*# sourceMappingURL=main.css.map */
