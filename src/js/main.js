@@ -53,6 +53,19 @@ let makeSlideshow = function (slideshowParentSelector){
     let prevButton = document.querySelector(slideshowParentSelector + ' .back')
     console.log(prevButton)
 
+    //listen for arrow press
+    window.addEventListener('keydown', function(event){
+        console.log(event)
+        if (event.key === 'ArrowRight'){
+            nextSlide()
+        }
+        if (event.key === 'ArrowLeft'){
+            previousSlide()
+        }    
+    })
+    //on arrowpress, run function
+
+
     nextButton.onclick = function(){
         nextSlide()
     }
