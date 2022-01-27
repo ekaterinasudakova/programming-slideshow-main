@@ -26,6 +26,23 @@ body {
 	background: #ccc;
 }
 
+/*breakpoint mixin*/
+@mixin breakpoint ($point){
+	@if $point == mobile {
+		@media screen and (min-width: 320px){@content;}
+	}
+	@else if $point == laptop {
+		@media screen and(min-width: 768px){@content;}
+	}
+	@else if $point == desktop {
+		@media screen and(min-width: 1224px){@content;}
+	}
+	@else if $point == largescreens {
+		@media screen and(min-width: 1824px){@content;}
+	}
+}
+
+
 /* 2. Content ================================= */
 
 .slideshow {
@@ -55,6 +72,11 @@ body {
   		-o-transition: opacity 2s ease-out;
   		transition: opacity 2s ease-out;
 	}
+
+	@include breakpoint(mobile){
+		width: 100%;
+		height: 15em;
+	}
 }
 .button-container{
 	display: flex;
@@ -64,5 +86,9 @@ body {
 	button{
 		margin: 0 20em;
 		padding: .5em 1em;
+	}
+
+	@include breakpoint(mobile){
+		display: none;
 	}
 }

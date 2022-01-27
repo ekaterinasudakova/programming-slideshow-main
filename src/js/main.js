@@ -38,6 +38,7 @@ every three seconds = setInterval
     X remove() append()
 */
 
+
 let makeSlideshow = function (slideshowParentSelector){
     //query to find all images = querySelectorAll
     let slides = document.querySelectorAll(slideshowParentSelector + ' img')
@@ -48,14 +49,18 @@ let makeSlideshow = function (slideshowParentSelector){
     let slideIndex = 0
 
 
+    //make variable to track the next and previous buttons
     let nextButton = document.querySelector(slideshowParentSelector + ' .next')
     console.log(nextButton)
     let prevButton = document.querySelector(slideshowParentSelector + ' .back')
     console.log(prevButton)
 
+
+
     //listen for arrow press
     window.addEventListener('keydown', function(event){
         console.log(event)
+        //on arrowpress, run function
         if (event.key === 'ArrowRight'){
             nextSlide()
         }
@@ -63,15 +68,39 @@ let makeSlideshow = function (slideshowParentSelector){
             previousSlide()
         }    
     })
-    //on arrowpress, run function
 
 
+    var startingX, movingX;
+    //listen to touch movement
+    window.addEventListener('touchstart', function(event){
+        //create variable to store initial touch position X axis
+        let startingX = event.touches[0].clientX
+        console.log(startingX)
+    })
+    window.addEventListener('touchmove', function(event){
+        //create variable to store final touch position X axis
+        let movingX = event.touches[0].clientX
+        console.log(movingX)
+    })
+    //calculate if moved right or left
+    window.addEventListener('touchend', function(){
+        if (startingX + 100 < movingX){
+            console.log('right')
+        } else if (startingX - 100 > movingX){
+            console.log('left')
+        }
+    })
+    
+
+    //when button is pressed, run function
     nextButton.onclick = function(){
         nextSlide()
     }
     prevButton.onclick = function(){
         previousSlide()
     }
+
+
 
     let nextSlide = function() {
         //    hide previous image = element.classList.remove
@@ -84,6 +113,8 @@ let makeSlideshow = function (slideshowParentSelector){
         //    show next image = element.classList.add
         slides[slideIndex].classList.add('show')
     }
+
+
 
     let previousSlide = function(){
         //    hide previous image = element.classList.remove
